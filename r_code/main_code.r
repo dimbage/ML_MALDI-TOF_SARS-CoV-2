@@ -1,5 +1,6 @@
 # set working directory
-setwd('D:/DATA/NATURE_MALDI/R')
+#setwd('path_to_r_code')
+getwd()
 # Load necessary libraries
 library(gtsummary)
 library(ggplot2)
