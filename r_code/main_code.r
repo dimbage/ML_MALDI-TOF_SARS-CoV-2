@@ -73,7 +73,7 @@ wf <- function(x) {
 }
 
 # Export results to Excel
-rio::export(nat_iM$iM_peak, "FIG1/peak_of_nat_data.xlsx")
+rio::export(nat_iM$iM_peak, "peak_of_nat_data.xlsx")
 
 # Generate summary table and save as HTML
 nat_iM$iM_peak |>
@@ -97,7 +97,7 @@ nat_iM$iM_peak |>
     modify_header(label = '**Peak**', all_stat_cols() ~ '**{level}**,  \nN = {n}') |>
     as_gt() |>
     gt::fmt_markdown(columns = everything()) |>
-    gt::gtsave('FIG1/peak_comparison_nat_data.html')
+    gt::gtsave('peak_comparison_nat_data.html')
 
 # Process peaks on NAT ML
 {
@@ -121,7 +121,7 @@ nat_iM$iM_peak |>
 }
 
 # Export peaks_on_nat_ml$iM_peak data to an Excel file
-rio::export(peaks_on_nat_ml$iM_peak, "FIG1/kz_peak_on_nat_data.xlsx")
+rio::export(peaks_on_nat_ml$iM_peak, "kz_peak_on_nat_data.xlsx")
 
 # Generate a summary table and save it as an HTML file
 peaks_on_nat_ml$iM_peak |>
@@ -141,7 +141,7 @@ peaks_on_nat_ml$iM_peak |>
     modify_header(label = '**Peak**', all_stat_cols() ~ '**{level}**,  \nN = {n}') |>
     as_gt() |>
     gt::fmt_markdown(columns = everything()) |>
-    gt::gtsave('FIG1/peak_comparison_kz_data_on_nat.html')
+    gt::gtsave('peak_comparison_kz_data_on_nat.html')
 
 ################################################
 # FIGS
@@ -209,8 +209,8 @@ peaks_on_nat_ml$iM_peak |>
             )
         )
 
-    ggsave(spectra_plots, filename = 'FIG1/fig_spectra.svg', width = 22, height = 14)
-    ggsave(spectra_plots, filename = 'FIG1/fig_spectra.png', width = 22, height = 14)
+    ggsave(spectra_plots, filename = 'fig_spectra.svg', width = 22, height = 14)
+    ggsave(spectra_plots, filename = 'fig_spectra.png', width = 22, height = 14)
 }
 
 # Process data for KZ region only
@@ -259,8 +259,8 @@ peaks_on_nat_ml$iM_peak |>
     # Create plots and save them as SVG and PNG
     spectra_plots1 <- wrap_plots(spectra_figs1$fig, ncol = 3)
 
-    ggsave(spectra_plots1, filename = 'FIG1/fig_spectra1.svg', width = 22, height = 7.5)
-    ggsave(spectra_plots1, filename = 'FIG1/fig_spectra1.png', width = 22, height = 7.5)
+    ggsave(spectra_plots1, filename = 'fig_spectra1.svg', width = 22, height = 7.5)
+    ggsave(spectra_plots1, filename = 'fig_spectra1.png', width = 22, height = 7.5)
 }
 
 # Process all peaks data
@@ -345,7 +345,7 @@ pca_plot1 <- all_peaks |>
         2
     )
 
-ggsave(pca_plot1, file = 'FIG1/pca1.svg', width = 8, height = 8)
+ggsave(pca_plot1, file = 'pca1.svg', width = 8, height = 8)
 
 
 pca_plot2 <- all_peaks |>
@@ -406,8 +406,8 @@ pca_plot4 <- all_peaks |>
 all_pca = (pca_plot1 + pca_plot2) / (pca_plot3 + pca_plot4) +
   plot_annotation(tag_levels = 'A')
 
-ggsave(all_pca, file = 'FIG1/all_pca.svg', width = 16, height = 13)
-ggsave(all_pca, file = 'FIG1/all_pca.png', width = 16, height = 13, bg = 'white')
+ggsave(all_pca, file = 'all_pca.svg', width = 16, height = 13)
+ggsave(all_pca, file = 'all_pca.png', width = 16, height = 13, bg = 'white')
 
 }
 
@@ -623,8 +623,8 @@ all_venn = (v1_pl + v2_pl) / (v3_pl + v4_pl) +
 plot_annotation(tag_levels = 'A')
 
 # Save the combined Venn diagram as SVG and PNG
-ggsave(all_venn, file = 'FIG1/all_venn.svg', width = 16, height = 16)
-ggsave(all_venn, file = 'FIG1/all_venn.png', width = 16, height = 16, bg = 'white')
+ggsave(all_venn, file = 'all_venn.svg', width = 16, height = 16)
+ggsave(all_venn, file = 'all_venn.png', width = 16, height = 16, bg = 'white')
 }
 
 {
@@ -731,8 +731,8 @@ create_ggtree_plot <- function(peaks, palette, filename_prefix) {
       legend.text = element_text(size = 15)
     )
   
-  ggsave(ggtree_pl1, file = paste0('FIG1/', filename_prefix, '.svg'), width = 12, height = 12)
-  ggsave(ggtree_pl1, file = paste0('FIG1/', filename_prefix, '.png'), width = 12, height = 12)
+  ggsave(ggtree_pl1, file = paste0('', filename_prefix, '.svg'), width = 12, height = 12)
+  ggsave(ggtree_pl1, file = paste0('', filename_prefix, '.png'), width = 12, height = 12)
 }
 
 # GGTREE1
@@ -889,7 +889,7 @@ nat_ml_res <- nat_ml_res |>
     modify_header(label = '**Classification metric**', all_stat_cols() ~ '**{level}**,  \nN = {n}') |>
     as_gt() |>
     gt::fmt_markdown(columns = everything()) |>
-    gt::gtsave('FIG1/tab1_nat_ml_comparison.html')
+    gt::gtsave('tab1_nat_ml_comparison.html')
 
 ###################################################################
 # Dot plot of accuracy of different ML models on different datasets
@@ -1078,8 +1078,8 @@ nat_kz_est_on_natml_tbl_plot <- nat_kz_est_on_natml_tbl |>
   scale_x_discrete(labels = \(x) stringr::str_replace(x, ',', '\n\\'))
 
 # Save the plot as an SVG and PNG file
-ggsave(nat_kz_est_on_natml_tbl_plot, file = 'FIG1/nat_kz_est_on_natml_plot1.svg', width = 13, height = 10)
-ggsave(nat_kz_est_on_natml_tbl_plot, file = 'FIG1/nat_kz_est_on_natml_plot1.png', width = 13, height = 10, bg = 'white')
+ggsave(nat_kz_est_on_natml_tbl_plot, file = 'nat_kz_est_on_natml_plot1.svg', width = 13, height = 10)
+ggsave(nat_kz_est_on_natml_tbl_plot, file = 'nat_kz_est_on_natml_plot1.png', width = 13, height = 10, bg = 'white')
 }
 
 
@@ -1298,7 +1298,7 @@ gt::tab_style(
   locations = gt::cells_row_groups(groups = everything())
 ) |>
 gt::fmt_markdown(columns = everything()) |>
-gt::gtsave('FIG1/tab2_auc_kz_on_nat_ml_1analysis.html')
+gt::gtsave('tab2_auc_kz_on_nat_ml_1analysis.html')
 }
 
 # Plot
@@ -1355,8 +1355,8 @@ ROC_plot_2020_1analysis <- roc_auc_tbl_1analysis |>
   guides(color = guide_legend(override.aes = list(alpha = 1, size = 8))) +
   scale_color_manual(values = c('#b80000', '#020292'))
 
-ggsave(ROC_plot_2020_1analysis, file = 'FIG1/ROC_plot_2020_1analysis.svg', width = 10, height = 10)
-ggsave(ROC_plot_2020_1analysis, file = 'FIG1/ROC_plot_2020_1analysis.png', width = 10, height = 10, bg = 'white')
+ggsave(ROC_plot_2020_1analysis, file = 'ROC_plot_2020_1analysis.svg', width = 10, height = 10)
+ggsave(ROC_plot_2020_1analysis, file = 'ROC_plot_2020_1analysis.png', width = 10, height = 10, bg = 'white')
 
 ROC_plot_2020_2022_1analysis <- roc_auc_tbl_1analysis |>
   filter(id == 'SARS-CoV-2+ [Kz 2020 + 2022] vs NCARI, Kazakhstan + AC') |>
@@ -1410,8 +1410,8 @@ ROC_plot_2020_2022_1analysis <- roc_auc_tbl_1analysis |>
   guides(color = guide_legend(override.aes = list(alpha = 1, size = 8))) +
   scale_color_manual(values = c('#b80000', '#020292'))
 
-ggsave(ROC_plot_2020_2022_1analysis, file = 'FIG1/ROC_plot_2020_2022_1analysis.svg', width = 10, height = 10)
-ggsave(ROC_plot_2020_2022_1analysis, file = 'FIG1/ROC_plot_2020_2022_1analysis.png', width = 10, height = 10, bg = 'white')
+ggsave(ROC_plot_2020_2022_1analysis, file = 'ROC_plot_2020_2022_1analysis.svg', width = 10, height = 10)
+ggsave(ROC_plot_2020_2022_1analysis, file = 'ROC_plot_2020_2022_1analysis.png', width = 10, height = 10, bg = 'white')
 }
 
 {
@@ -1441,7 +1441,7 @@ toc()
 }
 
 # Export results to Excel
-rio::export(nat_kz_3l_iM$iM_peak, file = "FIG1/nat_kz_3l_peak.xlsx")
+rio::export(nat_kz_3l_iM$iM_peak, file = "nat_kz_3l_peak.xlsx")
 
 # How many peaks are similar/identical in both analysis
 
@@ -1483,7 +1483,7 @@ nat_kz_3l_iM$iM_peak |>
   modify_header(label = '**Peak**', all_stat_cols() ~ '**{level}**,  \nN = {n}') |>
   as_gt() |>
   gt::fmt_markdown(columns = everything()) |>
-  gt::gtsave('FIG1/peak_comparison_nat_kz_3l_iM.html')
+  gt::gtsave('peak_comparison_nat_kz_3l_iM.html')
 
 
 # Generate Spectra Figures
@@ -1545,8 +1545,8 @@ spectra_plots_3l <- wrap_plots(spectra_figs_3l$fig[c(1, 3, 4, 2, 5, 6)], ncol = 
   )
 
 # Save Spectra Plots as SVG and PNG
-ggsave(spectra_plots_3l, filename = 'FIG1/spectra_plots_3l.svg', width = 22, height = 14)
-ggsave(spectra_plots_3l, filename = 'FIG1/spectra_plots_3l.png', width = 22, height = 14)
+ggsave(spectra_plots_3l, filename = 'spectra_plots_3l.svg', width = 22, height = 14)
+ggsave(spectra_plots_3l, filename = 'spectra_plots_3l.png', width = 22, height = 14)
 
 }
 
@@ -1649,8 +1649,8 @@ pca_plot3l_4 <- all_peaks3l |>
 all_pca3l = (pca_plot3l_1 + pca_plot3l_2) / (pca_plot3l_3 + pca_plot3l_4) +
   plot_annotation(tag_levels = 'A')
 
-ggsave(all_pca3l, file = 'FIG1/all_pca_3l.svg', width = 16, height = 13)
-ggsave(all_pca3l, file = 'FIG1/all_pca_3l.png', width = 16, height = 13, bg = 'white')
+ggsave(all_pca3l, file = 'all_pca_3l.svg', width = 16, height = 13)
+ggsave(all_pca3l, file = 'all_pca_3l.png', width = 16, height = 13, bg = 'white')
 
 }
 
@@ -1925,8 +1925,8 @@ nat_kz_mlModels_3l <- nat_kz_mlModels_3l |>
     scale_x_discrete(labels = \(x) stringr::str_replace(x, ',', '\n\\'))
     
   # Save the plot as SVG and PNG
-  ggsave(nat_kz_mlModels_3l_plot, file = 'FIG1/nat_kz_mlModels_3l_plot1.svg', width = 13, height = 10)
-  ggsave(nat_kz_mlModels_3l_plot, file = 'FIG1/nat_kz_mlModels_3l_plot1.png', width = 13, height = 10, bg = 'white')
+  ggsave(nat_kz_mlModels_3l_plot, file = 'nat_kz_mlModels_3l_plot1.svg', width = 13, height = 10)
+  ggsave(nat_kz_mlModels_3l_plot, file = 'nat_kz_mlModels_3l_plot1.png', width = 13, height = 10, bg = 'white')
 }
 
 
@@ -2139,7 +2139,7 @@ AUC_ROC_2 |>
   gt::fmt_markdown(columns = everything()) |> 
 
   # Save the table as an HTML file
-  gt::gtsave('FIG1/tab3_nat_kz_kz_auc_3l_merge.html')
+  gt::gtsave('tab3_nat_kz_kz_auc_3l_merge.html')
 }
 
 # Plot for AUC comparison in 2020
@@ -2198,8 +2198,8 @@ ROC_plot_2020_2analysis <- AUC_ROC_2 |>
   scale_color_manual(values = c('#b80000', '#020292'))
 
 # Save the 2020 plot as SVG and PNG
-ggsave(ROC_plot_2020_2analysis, file = 'FIG1/ROC_plot_2020_2analysis.svg', width = 10, height = 10)
-ggsave(ROC_plot_2020_2analysis, file = 'FIG1/ROC_plot_2020_2analysis.png', width = 10, height = 10, bg = 'white')
+ggsave(ROC_plot_2020_2analysis, file = 'ROC_plot_2020_2analysis.svg', width = 10, height = 10)
+ggsave(ROC_plot_2020_2analysis, file = 'ROC_plot_2020_2analysis.png', width = 10, height = 10, bg = 'white')
 
 # Plot for AUC comparison in 2020 + 2022
 ROC_plot_2020_2022_2analysis <- AUC_ROC_2 |>
@@ -2257,6 +2257,6 @@ ROC_plot_2020_2022_2analysis <- AUC_ROC_2 |>
   scale_color_manual(values = c('#b80000', '#020292'))
 
 # Save the 2020 + 2022 plot as SVG and PNG
-ggsave(ROC_plot_2020_2022_2analysis, file = 'FIG1/ROC_plot_2020_2022_2analysis.svg', width = 10, height = 10)
-ggsave(ROC_plot_2020_2022_2analysis, file = 'FIG1/ROC_plot_2020_2022_2analysis.png', width = 10, height = 10, bg = 'white')
+ggsave(ROC_plot_2020_2022_2analysis, file = 'ROC_plot_2020_2022_2analysis.svg', width = 10, height = 10)
+ggsave(ROC_plot_2020_2022_2analysis, file = 'ROC_plot_2020_2022_2analysis.png', width = 10, height = 10, bg = 'white')
 }
