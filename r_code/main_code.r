@@ -1,6 +1,6 @@
 # set working directory
 #setwd('path_to_r_code')
-getwd()
+
 # Load necessary libraries
 library(gtsummary)
 library(ggplot2)
@@ -9,7 +9,7 @@ library(tictoc)
 suppressMessages(library(tidytable))
 
 # Load custom functions from the functions directory
-invisible(lapply(list.files('PATH_TO_r_code/functions', pattern = '\\.r$', full.names = TRUE), source))
+invisible(lapply(list.files('functions', pattern = '\\.r$', full.names = TRUE), source))
 
 # Define the function
 wf <- function(x) {
@@ -54,12 +54,12 @@ wf <- function(x) {
     # Perform spectra processing
     nat_iM <- spectra_processing(
         object_or_path = c(
-            "PATH_TO_raw_spectra/nature_spectra/1_CovidTalca_Lab2_Pos",
-            "PATH_TO_raw_spectra/nature_spectra/2_CovidArgentina_Lab1_Pos",
-            "PATH_TO_raw_spectra/nature_spectra/3_CovidPeru_Lab3_Pos",
-            "PATH_TO_raw_spectra/nature_spectra/4_ControlTalca_Lab2_Neg",
-            "PATH_TO_raw_spectra/nature_spectra/5_ControlArgentina_Lab1_Neg",
-            "PATH_TO_raw_spectra/nature_spectra/6_ControlPeru_Lab3_Neg"
+            "row_spectra/nature_spectra/1_CovidTalca_Lab2_Pos",
+            "row_spectra/nature_spectra/2_CovidArgentina_Lab1_Pos",
+            "row_spectra/nature_spectra/3_CovidPeru_Lab3_Pos",
+            "row_spectra/nature_spectra/4_ControlTalca_Lab2_Neg",
+            "row_spectra/nature_spectra/5_ControlArgentina_Lab1_Neg",
+            "row_spectra/nature_spectra/6_ControlPeru_Lab3_Neg"
         ),
         wf = wf,
         warp_gr = c(1, 4),
@@ -104,10 +104,10 @@ nat_iM$iM_peak |>
     tic()
     peaks_on_nat_ml <- spectra_processing(
         object_or_path = c(
-            "PATH_TO_raw_spectra/covid_2020",
-            "PATH_TO_raw_spectra/covid_2022",
-            "PATH_TO_raw_spectra/control_healthy",
-            "PATH_TO_raw_spectra/control_arvi"
+            "row_spectra/covid_2020",
+            "row_spectra/covid_2022",
+            "row_spectra/control_healthy",
+            "row_spectra/control_arvi"
         ),
         reference = TRUE,
         ref_im = nat_iM$iM_peak,
@@ -1418,16 +1418,16 @@ ggsave(ROC_plot_2020_2022_1analysis, file = 'FIG1/ROC_plot_2020_2022_1analysis.p
 tic()
     nat_kz_3l_iM <- spectra_processing(
         object_or_path = c(
-            "PATH_TO_raw_spectra/nature_spectra/1_CovidTalca_Lab2_Pos",
-            "PATH_TO_raw_spectra/nature_spectra/2_CovidArgentina_Lab1_Pos",
-            "PATH_TO_raw_spectra/nature_spectra/3_CovidPeru_Lab3_Pos",
-            "PATH_TO_raw_spectra/nature_spectra/4_ControlTalca_Lab2_Neg",
-            "PATH_TO_raw_spectra/nature_spectra/5_ControlArgentina_Lab1_Neg",
-            "PATH_TO_raw_spectra/nature_spectra/6_ControlPeru_Lab3_Neg",
-            "PATH_TO_raw_spectra/covid_2020",
-            "PATH_TO_raw_spectra/covid_2022",
-            "PATH_TO_raw_spectra/control_arvi",
-            "PATH_TO_raw_spectra/control_healthy"
+            "row_spectra/nature_spectra/1_CovidTalca_Lab2_Pos",
+            "row_spectra/nature_spectra/2_CovidArgentina_Lab1_Pos",
+            "row_spectra/nature_spectra/3_CovidPeru_Lab3_Pos",
+            "row_spectra/nature_spectra/4_ControlTalca_Lab2_Neg",
+            "row_spectra/nature_spectra/5_ControlArgentina_Lab1_Neg",
+            "row_spectra/nature_spectra/6_ControlPeru_Lab3_Neg",
+            "row_spectra/covid_2020",
+            "row_spectra/covid_2022",
+            "row_spectra/control_arvi",
+            "row_spectra/control_healthy"
         ),
     wf = wf,
     warp_gr = c(1, 4),
